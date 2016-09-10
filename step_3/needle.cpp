@@ -1,6 +1,3 @@
-#include <iostream>
-#include <algorithm>
-
 #include <cpr/cpr.h>
 #include <json.hpp>
 
