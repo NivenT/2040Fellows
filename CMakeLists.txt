@@ -54,3 +54,7 @@ include_directories(${CPR_INCLUDE_DIRS} ${JSON_INCLUDE_DIRS})
 add_executable(prefix step_4/prefix.cpp)
 target_link_libraries(prefix ${CPR_LIBRARIES})
 include_directories(${CPR_INCLUDE_DIRS} ${JSON_INCLUDE_DIRS})
+
+add_executable(date step_5/date.cpp)
+target_link_libraries(date ${CPR_LIBRARIES})
+include_directories(${CPR_INCLUDE_DIRS} ${JSON_INCLUDE_DIRS})
