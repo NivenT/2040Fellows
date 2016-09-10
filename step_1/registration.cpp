@@ -3,14 +3,23 @@
 #include <cpr/cpr.h>
 #include <json.hpp>
 
+using json = nlohmann::json;
+
 int main(int argc, char** argv) {
-    auto r = cpr::Get(cpr::Url("http://httpbin.org/get"));
-    auto json = nlohmann::json::parse(r.text);
+	json request;
+	request["github"] = "https://github.com/NivenT/2040Fellows";
+	request["token"] = "dfbacfcbb73aa62b337f3f0daa90f522";
 
-    std::cout<<r.url<<std::endl; 
-	std::cout<<r.status_code<<std::endl;
-	std::cout<<r.header["content-type"]<<std::endl;
-	std::cout<<r.text<<std::endl;
+    std::cout<<"request: "<<request.dump(4)<<std::endl
+    		 <<std::endl;
 
-	std::cout<<json["headers"]<<std::endl;
+    auto response = cpr::Post(cpr::Url{"http://challenge.code2040.org/api/register"},
+    						  cpr::Body{request.dump()},
+    						  cpr::Header{{"Content-Type", "application/json"}});
+
+    std::cout<<"response status: "<<response.status_code<<std::endl
+    		 <<"response body: "<<response.text<<std::endl
+    		 <<std::endl;
+
+    return 0;
 }
