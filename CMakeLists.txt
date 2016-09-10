@@ -46,3 +46,7 @@ include_directories(${CPR_INCLUDE_DIRS} ${JSON_INCLUDE_DIRS})
 add_executable(reverse step_2/reverse.cpp)
 target_link_libraries(reverse ${CPR_LIBRARIES})
 include_directories(${CPR_INCLUDE_DIRS} ${JSON_INCLUDE_DIRS})
+
+add_executable(needle step_3/needle.cpp)
+target_link_libraries(needle ${CPR_LIBRARIES})
+include_directories(${CPR_INCLUDE_DIRS} ${JSON_INCLUDE_DIRS})
