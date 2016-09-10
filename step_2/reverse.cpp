@@ -4,6 +4,7 @@
 using json = nlohmann::json;
 
 std::string reverse_string(const std::string& orig) {
+    //rbegin/rend are reverse iterators, so they start at the end of the string and go to the beginning
     return std::string(orig.rbegin(), orig.rend());
 }
 

@@ -7,6 +7,7 @@ void filter_prefix(const std::string& prefix, std::vector<std::string>& array) {
     auto end = std::remove_if(array.begin(), array.end(), [&](const std::string& str) {
         return str.find(prefix) == 0;
     });
+    //remove_if returns new end of range, so array size needs to be adjusted
     array.resize(end - array.begin());
 }
 
