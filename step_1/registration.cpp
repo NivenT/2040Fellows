@@ -12,8 +12,8 @@ int main(int argc, char** argv) {
     		 <<std::endl;
 
     auto response = cpr::Post(cpr::Url{"http://challenge.code2040.org/api/register"},
-    						  cpr::Body{request.dump()},
-    						  cpr::Header{{"Content-Type", "application/json"}});
+    						  cpr::Header{{"Content-Type", "application/json"}},
+    						  cpr::Body{request.dump()});
 
     std::cout<<"response status: "<<response.status_code<<std::endl
     		 <<"response body: "<<response.text<<std::endl

@@ -11,15 +11,17 @@ std::string reverse_string(const std::string& orig) {
 int main(int argc, char** argv) {
 	json request;
 	request["token"] = "dfbacfcbb73aa62b337f3f0daa90f522";
+
     std::cout<<"request: "<<request.dump(4)<<std::endl
     		 <<std::endl;
 
     auto response = cpr::Post(cpr::Url{"http://challenge.code2040.org/api/reverse"},
-                              cpr::Body{request.dump()},
-                              cpr::Header{{"Content-Type", "application/json"}});
+                              cpr::Header{{"Content-Type", "application/json"}},
+                              cpr::Body{request.dump()});
 
     if (response.status_code/100 == 2) {
         auto reversed = reverse_string(response.text);
+
         std::cout<<"Received string \""<<response.text<<"\""<<std::endl
                  <<"The string reversed is \""<<reversed<<"\""<<std::endl
                  <<std::endl;
@@ -29,8 +31,8 @@ int main(int argc, char** argv) {
                  <<std::endl;
 
         response = cpr::Post(cpr::Url{"http://challenge.code2040.org/api/reverse/validate"},
-                             cpr::Body{request.dump()},
-                             cpr::Header{{"Content-Type", "application/json"}});
+                             cpr::Header{{"Content-Type", "application/json"}},
+                             cpr::Body{request.dump()});
 
         std::cout<<"response status: "<<response.status_code<<std::endl
                  <<"response body: "<<response.text<<std::endl

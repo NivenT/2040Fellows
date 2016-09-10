@@ -19,17 +19,17 @@ int main(int argc, char** argv) {
              <<std::endl;
 
     auto response = cpr::Post(cpr::Url{"http://challenge.code2040.org/api/prefix"},
-                              cpr::Body{request.dump()},
-                              cpr::Header{{"Content-Type", "application/json"}});
+                              cpr::Header{{"Content-Type", "application/json"}},
+                              cpr::Body{request.dump()});
 
     if (response.status_code/100 == 2) {
         auto dictionary = json::parse(response.text);
-        std::cout<<"prefix: "<<dictionary["prefix"]<<std::endl
-                 <<"array: "<<dictionary["array"]<<std::endl;
-
         std::vector<std::string> filtered = dictionary["array"];
         filter_prefix(dictionary["prefix"], filtered);
-        std::cout<<"filtered array: "<<json(filtered)<<std::endl
+
+        std::cout<<"prefix: "<<dictionary["prefix"]<<std::endl
+                 <<"array: "<<dictionary["array"]<<std::endl
+                 <<"filtered array: "<<json(filtered)<<std::endl
                  <<std::endl;
 
         request["array"] = filtered;
@@ -37,8 +37,8 @@ int main(int argc, char** argv) {
                  <<std::endl;
         
         response = cpr::Post(cpr::Url{"http://challenge.code2040.org/api/prefix/validate"},
-                             cpr::Body{request.dump()},
-                             cpr::Header{{"Content-Type", "application/json"}});
+                             cpr::Header{{"Content-Type", "application/json"}},
+                             cpr::Body{request.dump()});
 
         std::cout<<"response status: "<<response.status_code<<std::endl
                  <<"response body: "<<response.text<<std::endl

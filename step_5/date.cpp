@@ -23,8 +23,8 @@ int main(int argc, char** argv) {
              <<std::endl;
 
     auto response = cpr::Post(cpr::Url{"http://challenge.code2040.org/api/dating"},
-                              cpr::Body{request.dump()},
-                              cpr::Header{{"Content-Type", "application/json"}});
+                              cpr::Header{{"Content-Type", "application/json"}},
+                              cpr::Body{request.dump()});
 
     if (response.status_code/100 == 2) {
         const char* format = "%Y-%m-%dT%H:%M:%SZ";
@@ -44,8 +44,8 @@ int main(int argc, char** argv) {
                  <<std::endl;
 
         response = cpr::Post(cpr::Url{"http://challenge.code2040.org/api/dating/validate"},
-                             cpr::Body{request.dump()},
-                             cpr::Header{{"Content-Type", "application/json"}});
+                             cpr::Header{{"Content-Type", "application/json"}},
+                             cpr::Body{request.dump()});
 
         std::cout<<"response status: "<<response.status_code<<std::endl
                  <<"response body: "<<response.text<<std::endl
